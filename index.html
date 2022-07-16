@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta name="Description" content="Enter your description here" />
-    <title>Contact Form</title>
+    <title>Aplikasi</title>
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/icon.css">
@@ -14,9 +14,9 @@
   <body>
     <div class="container mt-4">
         <div class="row">
-          <div class="alert alert-primary" role="alert">
-            <h3>Contact Form</h3>
-            <h5>Aplikasi untuk menyimpan kontak</h5>
+          <div class="alert alert-primary text-end" role="alert">
+            <h3>Connect Chat</h3>
+            <h5>Aplikasi Chatting </h5>
           </div>
           <div class="titleApp">
 
@@ -27,20 +27,17 @@
                         <form id="form">
                             <input type="hidden" name="id" id="id">
                             <label for="">Name</label>
-                            <input type="text" placeholder="Name" class="form-control" name="name" id="name" required>
+                            <input type="text" placeholder="Masukin Nama Di Form Ini" class="form-control" name="name" id="name" required>
                             <br>
                             <label for="">Email</label>
                             <input type="email" placeholder="Email Address" class="form-control" name="age" id="age" required>
                             <br>
-                            
                             <label for="">Phone</label>
-                            <input type="text" placeholder="Phone" class="form-control" id="phone" name="phone" required>
+                            <input type="text" placeholder="Nomor Handphone / Whatsapp" class="form-control" id="phone" name="phone" required>
                             <br>
-
-                            <label for="">Message</label>
-                            <textarea name="address" placeholder="Write Your Message Here" id="address" cols="30" rows="5" required class="form-control"></textarea>
+                            <label for="">Pesan</label>
+                            <textarea name="address" placeholder="Tuliskan Pesan Disini" id="address" cols="30" rows="5" required class="form-control"></textarea>
                             <br>
-                            
                           <div class="buttonGroup">
                             <button class="btn btn-sm btn-primary" type="button" onclick="save()">Save</button>
                             <button class="btn btn-sm btn-primary ms-2" type="button" onclick="clearData()">Reset</button>
@@ -59,10 +56,10 @@
                                         <th>No</th>
                                         <th>Name</th>
                                         <th>Email</th>
-                                        <th>Messages</th>
+                                        <th>Address</th>
                                         <th>Phone</th>
                                         <th>Edit</th>
-                                        <th>Delete </th>
+                                        <!-- <th>Delete </th> -->
                                     </tr>
                                 </thead>
                                 <tbody id="table">
