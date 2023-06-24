@@ -2,116 +2,126 @@
 <html lang="en" data-bs-theme="dark">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Connect ChatOut</title>
-  <!-- CSS Bootstrap -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect ChatOut</title>
+    <!-- CSS Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
 </head>
 
 <body>
-  <div id="app" class="container mt-4">
-    <h2 class="mb-4">Connect Chatout</h2>
-    <p class="lead">Modern Tool To Save Your Friends Contact By <b>Code With Arif</b></p>
+    <div id="app" class="container mt-4">
+        <h2 class="mb-4">Connect Chatout</h2>
+        <p class="lead">Modern Tool To Save Your Friends Contact By <b>Code With Arif</b></p>
 
-    <form @submit.prevent="addContact">
-      <div class="mb-3">
-        <label for="name" class="form-label">Name</label>
-        <input v-model="newContact.name" type="text" class="form-control" id="name" required>
-      </div>
-      <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
-        <input v-model="newContact.email" type="email" class="form-control" id="email" required>
-      </div>
-      <div class="mb-3">
-        <label for="phone" class="form-label">Phone Number</label>
-        <input v-model="newContact.phone" type="text" class="form-control" id="phone" required>
-      </div>
-      <button type="submit" class="btn btn-primary">Add Contact</button>
-    </form>
+        <div class="row">
+            <div class="col">
+                <form @submit.prevent="addContact">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input v-model="newContact.name" type="text" class="form-control" id="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input v-model="newContact.email" type="email" class="form-control" id="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Phone Number</label>
+                        <input v-model="newContact.phone" type="text" class="form-control" id="phone" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Contact</button>
+                </form>
+            </div>
+            <div class="col">
+                <table class="table mt-4">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone Number</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(contact, index) in contacts" :key="index">
+                            <td>{{ contact.name }}</td>
+                            <td>{{ contact.email }}</td>
+                            <td>{{ contact.phone }}</td>
+                            <td>
+                                <button @click="editContact(index)" class="btn btn-sm btn-primary">Edit</button>
+                                <button @click="deleteContact(index)" class="btn btn-sm btn-danger">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-    <table class="table mt-4">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Phone Number</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(contact, index) in contacts" :key="index">
-          <td>{{ contact.name }}</td>
-          <td>{{ contact.email }}</td>
-          <td>{{ contact.phone }}</td>
-          <td>
-            <button @click="editContact(index)" class="btn btn-sm btn-primary">Edit</button>
-            <button @click="deleteContact(index)" class="btn btn-sm btn-danger">Delete</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
 
-  <!-- Vue.js 3 -->
-  <script src="https://unpkg.com/vue@next"></script>
-  <!-- Bootstrap 5 -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    const app = Vue.createApp({
-      data() {
-        return {
-          newContact: {
-            name: '',
-            email: '',
-            phone: ''
-          },
-          contacts: []
-        }
-      },
-      mounted() {
-        // Get the list of contacts from Local Storage when the component is mounted
-        const storedContacts = localStorage.getItem('contacts');
-        if (storedContacts) {
-          this.contacts = JSON.parse(storedContacts);
-        }
-      },
-      methods: {
-        addContact() {
-          // Add a new contact to the contacts list
-          this.contacts.push({ ...this.newContact });
-          // Clear the input form
-          this.newContact.name = '';
-          this.newContact.email = '';
-          this.newContact.phone = '';
-          // Save the contacts list to Local Storage
-          this.saveContacts();
-        },
-        editContact(index) {
-          // Fill the input form with the data of the contact to be edited
-          this.newContact.name = this.contacts[index].name;
-          this.newContact.email = this.contacts[index].email;
-          this.newContact.phone = this.contacts[index].phone;
-          // Remove the contact from the contacts list
-          this.contacts.splice(index, 1);
-          // Save the contacts list to Local Storage
-          this.saveContacts();
-        },
-        deleteContact(index) {
-          // Remove the contact from the contacts list
-          this.contacts.splice(index, 1);
-          // Save the contacts list to Local Storage
-          this.saveContacts();
-        },
-        saveContacts() {
-          // Save the contacts list to Local Storage
-          localStorage.setItem('contacts', JSON.stringify(this.contacts));
-        }
-      }
-    });
 
-    app.mount('#app');
-  </script>
+
+
+    </div>
+
+    <!-- Vue.js 3 -->
+    <script src="https://unpkg.com/vue@next"></script>
+    <!-- Bootstrap 5 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    newContact: {
+                        name: '',
+                        email: '',
+                        phone: ''
+                    },
+                    contacts: []
+                }
+            },
+            mounted() {
+                // Get the list of contacts from Local Storage when the component is mounted
+                const storedContacts = localStorage.getItem('contacts');
+                if (storedContacts) {
+                    this.contacts = JSON.parse(storedContacts);
+                }
+            },
+            methods: {
+                addContact() {
+                    // Add a new contact to the contacts list
+                    this.contacts.push({ ...this.newContact });
+                    // Clear the input form
+                    this.newContact.name = '';
+                    this.newContact.email = '';
+                    this.newContact.phone = '';
+                    // Save the contacts list to Local Storage
+                    this.saveContacts();
+                },
+                editContact(index) {
+                    // Fill the input form with the data of the contact to be edited
+                    this.newContact.name = this.contacts[index].name;
+                    this.newContact.email = this.contacts[index].email;
+                    this.newContact.phone = this.contacts[index].phone;
+                    // Remove the contact from the contacts list
+                    this.contacts.splice(index, 1);
+                    // Save the contacts list to Local Storage
+                    this.saveContacts();
+                },
+                deleteContact(index) {
+                    // Remove the contact from the contacts list
+                    this.contacts.splice(index, 1);
+                    // Save the contacts list to Local Storage
+                    this.saveContacts();
+                },
+                saveContacts() {
+                    // Save the contacts list to Local Storage
+                    localStorage.setItem('contacts', JSON.stringify(this.contacts));
+                }
+            }
+        });
+
+        app.mount('#app');
+    </script>
 </body>
 
 </html>
